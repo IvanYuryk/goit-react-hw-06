@@ -1,0 +1,13 @@
+.error {
+  color: red;
+}
+
+.addCont {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  gap: 16px;
+  border: solid 2px black;
+  border-radius: 8px;
+  padding: 8px;
+}

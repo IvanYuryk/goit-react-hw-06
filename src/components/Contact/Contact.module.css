@@ -1,0 +1,9 @@
+.person {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border: solid 2px black;
+  border-radius: 4px;
+  width: 280px;
+}
