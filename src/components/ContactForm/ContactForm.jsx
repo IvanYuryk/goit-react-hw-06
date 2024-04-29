@@ -1,40 +1,44 @@
-import css from "./ContactForm.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { nanoid } from "nanoid";
 
-const ContactForm = ({ onAddContact }) => {
-  const initialValues = {
-    name: "",
-    number: "",
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
+
+import css from "./ContactForm.module.css";
+
+
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, actions) => {
+    const addIdContact = { id: nanoid(), ...values };
+    dispatch(addContact(addIdContact));
+    actions.resetForm();
   };
 
-  const validationSchema = Yup.object({
+
+  const validationSchema = Yup.object().shape({
     name: Yup.string()
       .required("Required")
-      .min(3, "To short!")
-      .max(50, "To long!"),
+      .min(3, "Too Short!")
+      .max(50, "Too Long!"),
     number: Yup.string()
       .required("Required")
-      .min(3, "To short!")
-      .max(50, "To long!"),
+      .min(3, "Too Short!")
+      .max(50, "Too Long!"),
   });
 
-  const onSubmit = (values, { resetForm }) => {
-    const newContact = {
-      id: nanoid(),
-      ...values,
-    };
-    onAddContact(newContact);
-    resetForm();
-  };
 
   return (
     <div className={css.addCont}>
       <Formik
-        initialValues={initialValues}
+        initialValues={{
+          name: "",
+          number: "",
+        }}
         validationSchema={validationSchema}
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit}
       >
         <Form className="myForm">
           <label>
