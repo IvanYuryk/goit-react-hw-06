@@ -40,7 +40,7 @@ const ContactForm = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <Form className="myForm">
+        <Form className={css.myForm}>
           <label>
             <span>Name:</span>
             <br />
@@ -55,7 +55,7 @@ const ContactForm = () => {
             <ErrorMessage className={css.error} name="number" component="div" />
           </label>
           <br />
-          <button type="submit">Add Contact</button>
+          <button className={css.addBtn} type="submit">Add Contact</button>
         </Form>
       </Formik>
     </div>
